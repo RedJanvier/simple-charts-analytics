@@ -21,8 +21,8 @@ app.get('/api', (req, res, next) => {
 
             if (!week_started && pos === position && (now - week_start) >= 604800000) {
                 const query = {
-                    text: "UPDATE ts SET data[$1] = $3, last_date = $2, pos = $1, week_started = $4, week_start = $5 WHERE id = 1;",
-                    values: [position, last_date, 1, true, now]
+                    text: "UPDATE ts SET data = $3, last_date = $2, pos = $1, week_started = $4, week_start = $5 WHERE id = 1;",
+                    values: [position, last_date, '{0,0,0,1,0,0,0}', true, now]
                 };
 
                 return db

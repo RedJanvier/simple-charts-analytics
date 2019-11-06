@@ -1,6 +1,6 @@
 const { Pool, Client } = require('pg');
 
-const pool = new Pool({ connectionString: 'postgres://RedJanvier:Jannyda1@localhost:5432/elite' });
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
 // pool.on('connect', (err, client) => {
 //     if (err) throw err;

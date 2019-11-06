@@ -1,4 +1,4 @@
-fetch('http://localhost:3000/api/')
+fetch('https://redjanvier-analytics.herokuapp.com/api/')
     .then(res => res.json())
     .then(console.log)
     .catch(console.log);

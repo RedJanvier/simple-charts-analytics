@@ -13,21 +13,23 @@ app.get('/api', (req, res, next) => {
     const day = new Date();
     const last_date = moment(day).format('YYYY MM DD');
     const position = day.getDay() + 1;
+    const now = Date.now();
     db
         .query('SELECT * FROM ts WHERE id = 1')
         .then(datas => {
             let { data, week_started, week_start, pos } = datas.rows[0];
 
-            if (!week_started && week_start === position && pos === position) {
+            if (!week_started && pos === position && (now - week_start) >= 604800000) {
                 const query = {
-                    text: "UPDATE ts SET data = $3, last_date = $2, pos = $1, week_started = $4 WHERE id = 1;",
-                    values: [position, last_date, '{0,0,0,0,0,0,0}', true]
+                    text: "UPDATE ts SET data[$1] = $3, last_date = $2, pos = $1, week_started = $4, week_start = $5 WHERE id = 1;",
+                    values: [position, last_date, 1, true, now]
                 };
 
                 return db
                     .query(query)
                     .then(() => {
                         console.log('Week Restarted...');
+                        return res.status(200).json({ success: true, msg: 'Week Restarted...' });
                     });
             }
 
@@ -42,7 +44,7 @@ app.get('/api', (req, res, next) => {
             return db
                 .query(query)
                 .then(() => {
-                    return res.status(200).json({ success: true });
+                    return res.status(200).json({ success: true, count });
                 });
 
         })

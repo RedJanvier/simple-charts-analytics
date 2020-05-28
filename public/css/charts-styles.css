@@ -1,14 +1,14 @@
 .charts {
-    display: flex;
-    max-width: 450px;
-    width: 100%;
-    flex-wrap: wrap;
-    background: #eee;
+  display: flex;
+  max-width: 450px;
+  width: 100%;
+  flex-wrap: wrap;
+  background: #eee;
 }
 
 .chart {
-    width: 100%;
-    margin: 1.2em;
-    padding: 20px;
-    background: white;
+  width: 100%;
+  margin: 1.2em;
+  padding: 20px;
+  background: white;
 }

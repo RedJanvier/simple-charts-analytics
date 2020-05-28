@@ -1,11 +1,11 @@
-const ctx_line = document.querySelector('#js-line-chart').getContext('2d');
-const ctx_bar = document.querySelector('#js-bar-chart').getContext('2d');
+const ctxLine = document.querySelector('#js-line-chart').getContext('2d');
+const ctxBar = document.querySelector('#js-bar-chart').getContext('2d');
 
 fetch('https://redjanvier-analytics.herokuapp.com/api/analytics')
   .then((res) => res.json())
   .then((res) => {
-    const data = res.data;
-    const lineChart = new Chart(ctx_line, {
+    const { data } = res;
+    const lineChart = new Chart(ctxLine, {
       type: 'line',
       data: {
         labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -34,7 +34,7 @@ fetch('https://redjanvier-analytics.herokuapp.com/api/analytics')
         ],
       },
     });
-    const barChart = new Chart(ctx_bar, {
+    const barChart = new Chart(ctxBar, {
       type: 'bar',
       data: {
         labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],

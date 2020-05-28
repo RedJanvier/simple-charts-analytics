@@ -1,7 +1,9 @@
 const ctxLine = document.querySelector('#js-line-chart').getContext('2d');
 const ctxBar = document.querySelector('#js-bar-chart').getContext('2d');
-
-fetch('https://redjanvier-analytics.herokuapp.com/api/analytics')
+const URL =
+  `http://localhost:4000/api/` ||
+  'https://redjanvier-analytics.herokuapp.com/api/';
+fetch(URL)
   .then((res) => res.json())
   .then((res) => {
     const { data } = res;

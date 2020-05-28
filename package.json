@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec babel-node app.js",
-    "start": "babel-node app.js"
+    "start": "cross-env NODE_ENV=production babel-node app.js"
   },
   "keywords": [],
   "author": "RedJanvier",
